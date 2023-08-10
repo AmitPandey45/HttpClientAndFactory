@@ -21,6 +21,7 @@ namespace Api.Client
         {
             using (var httpResponse = await client.GetAsync(url))
             {
+                httpResponse.EnsureSuccessStatusCode();
                 return await ReadStringResponse(httpResponse);
             }
         }

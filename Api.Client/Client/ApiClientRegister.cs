@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Polly;
 
 namespace Api.Client.Client
 {
@@ -10,7 +11,9 @@ namespace Api.Client.Client
         {
             services.AddTransient<HttpContextMiddleware>();
             services.AddHttpClient<ApiClient>(clientConfiguration)
-                .AddHttpMessageHandler<HttpContextMiddleware>();
+                .AddHttpMessageHandler<HttpContextMiddleware>()
+                .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(3)))
+                .AddTransientHttpErrorPolicy(policy => policy.CircuitBreakerAsync(5, TimeSpan.FromSeconds(20)));
 
             return services;
         }

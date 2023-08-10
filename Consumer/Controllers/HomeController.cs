@@ -47,5 +47,14 @@ namespace Consumer.Controllers
         {
             return client.GetHome();
         }
+
+        [HttpGet]
+        [Route("multiroute")]
+        [Route("multiroute/{name}")]
+        [Route("multiroute/{name}/{id}")]
+        public Task<string> MultiRoute(string name, int id)
+        {
+            return Task.FromResult($"Multi route calls with data Name = {name}, Id = {id}");
+        }
     }
 }
