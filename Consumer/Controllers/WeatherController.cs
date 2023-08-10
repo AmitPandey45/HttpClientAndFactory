@@ -24,7 +24,7 @@ namespace Consumer.Controllers
         [Route("{cityName}")]
         public async Task<string> GetWeatherDetail(string cityName)
         {
-            string url = $"http://api.weatherapi.com/v1/current.json?key=00140c27b738416a80393748230608&q={cityName}&aqi=yes";
+            string url = $"http://api.weatherapi.com/v1/current.json?key=&q={cityName}&aqi=yes";
 
             using (var client = new HttpClient())
             {
@@ -39,7 +39,7 @@ namespace Consumer.Controllers
         [Route("SingleClient/{cityName}")]
         public async Task<string> SingleHttpClient(string cityName)
         {
-            string url = $"http://api.weatherapi.com/v1/current.json?key=00140c27b738416a80393748230608&q={cityName}&aqi=yes";
+            string url = $"http://api.weatherapi.com/v1/current.json?key=&q={cityName}&aqi=yes";
 
             return await httpClient.GetStringAsync(url);
         }
@@ -48,7 +48,7 @@ namespace Consumer.Controllers
         [Route("TypedClient/{cityName}")]
         public async Task<string> TypedClient([FromServices] ApiClient client, string cityName)
         {
-            string url = $"?key=00140c27b738416a80393748230608&q={cityName}&aqi=yes";
+            string url = $"?key=&q={cityName}&aqi=yes";
 
             return await client.GetStringAsync(url);
         }
