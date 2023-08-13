@@ -1,6 +1,9 @@
 ﻿using Api.Client;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Consumer.Controllers
 {
